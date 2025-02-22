@@ -1,4 +1,4 @@
-from src.hello_world import hello_world
+from src.main.server.server import app
 
 if __name__ == "__main__" :
-    hello_world()
+    app.run("0.0.0.0", port=3000, debug = True)
