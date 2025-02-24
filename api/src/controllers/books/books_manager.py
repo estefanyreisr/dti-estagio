@@ -81,4 +81,21 @@ class BooksManager:
                 "data": books_data
             }
         )
+        
+    
+    def delete(self, http_request: HttpRequest) -> HttpResponse:
+        id = http_request.param["book_id"]
+        
+        self.__book_repo.delete_book(int(id))
+        
+        return self.__format_response_delete(id)
+    
+    def __format_response_delete(self, book_id: str) -> HttpResponse:
+        return HttpResponse(
+            status_code=200,
+            body={
+                "message": "Livro com o id " + book_id + " foi deletado com sucesso"
+            }
+        )
+        
 

@@ -53,18 +53,18 @@ class LivrosRepository(LivrosRepositoryInterface) :
                 db.session.rollback()
                 raise exception
     
-    def delete_book(self, book_title: str) -> None:
+    def delete_book(self, book_id: int) -> None:
             with DBConnectionHandler() as db:
                 try:
                     # Encontrar o livro pelo título
-                    book = db.session.query(Livros).filter(Livros.titulo == book_title).one_or_none()
+                    book = db.session.query(Livros).filter(Livros.id == book_id).one_or_none()
                     
                     if book:
                         # Se o livro existir, deleta o livro
                         db.session.delete(book)
                         db.session.commit()
                     else:
-                        raise ValueError(f"Livro com o título '{book_title}' não encontrado.")
+                        raise ValueError(f"Livro com o id '{book_id}' não encontrado.")
                 except Exception as exception:
                     db.session.rollback()
                     raise exception
