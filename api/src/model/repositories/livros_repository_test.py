@@ -1,8 +1,9 @@
+import pytest
 from .livros_repository import LivrosRepository
 from datetime import datetime
 
-#@pytest.mark.skip("Insert in db") 
-"""def test_insert_book():
+@pytest.mark.skip("Insert in db") 
+def test_insert_book():
     book_title = "Doctor House"
     book_author = "Ana C."
     book_gender = "Médico"
@@ -11,7 +12,7 @@ from datetime import datetime
     book_date_release = datetime.strptime("2025-02-03", '%Y-%m-%d').date()
         
     book_repo = LivrosRepository()
-    book_repo.insert(book_title, book_author, book_gender, book_publisher, book_pages_number, book_date_release ) """
+    book_repo.insert(book_title, book_author, book_gender, book_publisher, book_pages_number, book_date_release ) 
     
 
     
