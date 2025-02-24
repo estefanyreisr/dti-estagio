@@ -4,5 +4,6 @@ CREATE TABLE Livros (
     autor TEXT NOT NULL,
     genero TEXT,
     editora TEXT,
-    lancamento DATE
+    numero_paginas INTEGER,
+    data_lancamento DATE NOT NULL
 );
