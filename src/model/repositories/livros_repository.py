@@ -33,7 +33,7 @@ class LivrosRepository(LivrosRepositoryInterface) :
             )
             return data
     
-    def get_all_books(self) -> list:
+    def get_all_books(self) -> Livros:
         with DBConnectionHandler() as db:
             data = (
                 db.session
@@ -53,7 +53,7 @@ class LivrosRepository(LivrosRepositoryInterface) :
                 db.session.rollback()
                 raise exception
     
-    def delete_book(self, book_title: str) -> None:
+    def ddelete_book_by_title(self, book_title: str) -> None:
             with DBConnectionHandler() as db:
                 try:
                     # Encontrar o livro pelo título
@@ -69,7 +69,9 @@ class LivrosRepository(LivrosRepositoryInterface) :
                     db.session.rollback()
                     raise exception
 
-            
+     
+
+       
             
             
            
