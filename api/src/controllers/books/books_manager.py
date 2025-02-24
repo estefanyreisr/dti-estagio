@@ -53,7 +53,7 @@ class BooksManager:
         return HttpResponse(
             status_code=201,
             body={
-                "message": "Book created successfully",
+                "message": "Livro criado com sucesso",
                 "data": book_data
             }
         )
@@ -98,4 +98,44 @@ class BooksManager:
             }
         )
         
-
+    
+    def read(self, http_request: HttpRequest) -> HttpResponse:
+        id = http_request.param["book_id"]
+        
+        book = self.__book_repo.get_book_by_id(int(id))
+        
+        return self.__format_response_read(book)
+    
+    def __format_response_read(self, book: Livros) -> HttpResponse:
+        book_formatted = {
+            "titulo": book.titulo,
+            "autor": book.autor,
+            "editora": book.editora,
+            "genero": book.genero,
+            "numero_paginas": book.numero_paginas,
+            "data_lancamento": book.data_lancamento.strftime('%Y-%m-%d')
+        }
+        
+        return HttpResponse(
+            status_code=200,
+            body={
+                "data": book_formatted
+            }
+        )
+        
+    def update(self, http_request: HttpRequest) -> HttpResponse:
+        book_data = http_request.body["data"]
+        book_id = http_request.param["book_id"]
+        
+        self.__book_repo.update_book(book_id=book_id, book_info=book_data)
+        
+        return self.__format_response_update(book_data)
+        
+    def __format_response_update(self, book_data: dict) -> HttpResponse:
+        return HttpResponse(
+            status_code=200,
+            body={
+                "message": "Livro atualizado com sucesso",
+                "data": book_data
+            }
+        )

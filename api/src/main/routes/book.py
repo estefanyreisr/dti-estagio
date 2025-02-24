@@ -53,3 +53,30 @@ def delete_book_by_id(book_id):
     print('http_response', http_response.body)
     
     return jsonify(http_response.body), http_response.status_code
+
+@book_route_bp.route("/livros/<book_id>", methods = ["GET"] )
+def read_book_by_id(book_id):
+    
+    http_request = HttpRequest(param={"book_id": book_id})
+    
+    book_repo = LivrosRepository()
+    
+    books_controller = BooksManager(book_repo)
+    
+    http_response = books_controller.read(http_request)
+    
+    
+    return jsonify(http_response.body), http_response.status_code
+
+@book_route_bp.route("/livros/<book_id>", methods = ["PUT"] )
+def update_book_by_id(book_id):
+    
+    http_request = HttpRequest(param={"book_id": book_id}, body=request.json)
+    
+    book_repo = LivrosRepository()
+    
+    books_controller = BooksManager(book_repo)
+    
+    http_response = books_controller.update(http_request)
+    
+    return jsonify(http_response.body), http_response.status_code
