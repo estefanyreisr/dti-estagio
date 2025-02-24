@@ -33,7 +33,7 @@ class LivrosRepository(LivrosRepositoryInterface) :
             )
             return data
     
-    def get_all_books(self) -> Livros:
+    def get_all_books(self) -> list[Livros]:
         with DBConnectionHandler() as db:
             data = (
                 db.session
