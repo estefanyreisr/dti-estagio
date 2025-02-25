@@ -4,8 +4,18 @@ import Table from 'react-bootstrap/Table'
 
 import './App.css'
 
+type Book = {
+  id: number
+  titulo: string
+  autor: string
+  genero: string
+  editora: string
+  numero_paginas: number
+  data_lancamento: string
+}
+
 function App() {
-  const [books, setBooks] = useState([])
+  const [books, setBooks] = useState<Book[]>([])
 
   useEffect(() => {
     axios.get("http://localhost:3000/livros")
@@ -18,10 +28,8 @@ function App() {
 
   return (
     <>
-
       <div>
         <h1>Livros</h1>
-
         <Table striped bordered hover>
           <thead>
             <tr>
