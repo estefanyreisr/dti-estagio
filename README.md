@@ -59,8 +59,8 @@ $ npm run dev # para rodar a aplicação
 
 ## Descrição do Recurso
 
-Foi utilizado o recurso `Livro` com as seguintes:
-- id: campo numérico, chave primário e autoincremental;
+Foi utilizado o recurso `Livro` com as seguintes propriedades:
+- id: campo numérico, chave primária e autoincremental;
 - titulo: campo texto (string) e obrigatório;
 - autor: campo texto (string) e obrigatório;
 - genero: campo texto (string) e opcional;
