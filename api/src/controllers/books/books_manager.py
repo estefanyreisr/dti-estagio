@@ -26,7 +26,7 @@ class BooksManager:
         response = self.__book_repo.select_book_by_title(book_title)
         
         if response:
-            raise Exception("Book already exists")
+            raise Exception("Livro com esse nome já existe")
         
     
     def __insert_book(self, book_data: dict) -> None:

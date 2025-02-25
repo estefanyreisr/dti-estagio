@@ -30,3 +30,8 @@ class LivrosRepositoryInterface(ABC):
     def delete_book(self, book_id: int) -> None:
         """Deleta um livro pelo ID"""
         pass
+    
+    @abstractmethod
+    def get_book_by_id(self, book_id: int) -> None:
+        """Busca um livro pelo ID e retorna um objeto Livros ou None se não encontrado"""
+        pass

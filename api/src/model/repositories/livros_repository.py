@@ -29,7 +29,7 @@ class LivrosRepository(LivrosRepositoryInterface) :
                 db.session
                 .query(Livros)
                 .filter(Livros.titulo == book_title)
-                .one_or_none()
+                .first()
             )
             return data
     
