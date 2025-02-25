@@ -1,34 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import Table from 'react-bootstrap/Table'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [books, setBooks] = useState([])
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/livros")
+      .then(response => {
+        const axiosData = response.data
+        setBooks(axiosData.data)
+      })
+
+  }, [])
 
   return (
     <>
+
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Livros</h1>
+
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Gênero</th>
+              <th>Editora</th>
+              <th>Número de Páginas</th>
+              <th>Data de Lançamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book) => {
+              return (
+                <tr key={book.id}>
+                  <td>{book.id}</td>
+                  <td>{book.titulo}</td>
+                  <td>{book.autor}</td>
+                  <td>{book.genero}</td>
+                  <td>{book.editora}</td>
+                  <td>{book.numero_paginas}</td>
+                  <td>{book.data_lancamento}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
     </>
+
   )
 }
 

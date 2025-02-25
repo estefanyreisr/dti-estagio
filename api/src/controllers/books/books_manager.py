@@ -68,6 +68,7 @@ class BooksManager:
         books_data = []
         for b in books:
             books_data.append({
+                "id": b.id,
                 "titulo": b.titulo,
                 "autor": b.autor,
                 "editora": b.editora,
